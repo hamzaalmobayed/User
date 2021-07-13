@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 class TextFieldClass extends StatelessWidget {
   String name;
   Function function;
-
-
   TextFieldClass(this.name,this.function);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,8 +23,6 @@ class TextFieldClass extends StatelessWidget {
 
         decoration: InputDecoration(
           labelText: name,
-
-
         ),
       ),
     );

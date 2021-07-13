@@ -3,6 +3,7 @@ import 'package:untitled/textField.dart';
 
 import 'FormUser.dart';
 import 'Home.dart';
+import 'Route.dart';
 
 class Mershant extends StatefulWidget {
   @override
@@ -96,7 +97,7 @@ class _MershantState extends State<Mershant> {
                 color: Colors.blueAccent,
               ),
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   // Validate returns true if the form is valid, or false otherwise.
                   if (mershantKey.currentState.validate()) {
                     mershantKey.currentState.save();
@@ -104,9 +105,10 @@ class _MershantState extends State<Mershant> {
                 if (email != null && password != null && confirm != null&&shop!=null&&company!=null) {
                     FormUser mershantUser = FormUser.mershant(
                         email, password, confirm, company, shop, init);
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Home(mershantUser)));
-                  }
+                    var result=RouteApp.route.pushNamedFuction('home', mershantUser);
+                  //var result=  await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: mershantUser);
+                  print(result);
+                }
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),

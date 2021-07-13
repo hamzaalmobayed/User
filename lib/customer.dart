@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/FormUser.dart';
 import 'package:untitled/Home.dart';
+import 'package:untitled/Route.dart';
 import 'package:untitled/textField.dart';
 class Customer extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _CustomerState extends State<Customer> {
                 color: Colors.blueAccent,
               ),
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   // Validate returns true if the form is valid, or false otherwise.
                   if (customerKey.currentState.validate()) {
                     customerKey.currentState.save();
@@ -39,7 +40,9 @@ class _CustomerState extends State<Customer> {
 
                   if(email!=null&&password!=null&&confirm!=null){
                     FormUser customerUser=FormUser.customer(email,password,confirm);
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home(customerUser)));
+                    var result=await RouteApp.route.pushNamedFuction('home',customerUser);
+                   //var result= await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: customerUser);
+                   print(result);
                   }
 
                 },

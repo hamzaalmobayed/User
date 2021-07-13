@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Route.dart';
 import 'package:untitled/customer.dart';
 import 'package:untitled/textField.dart';
 
+import 'Home.dart';
 import 'Mershant.dart';
 
 void main() {
@@ -16,7 +18,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: MyHome(),
+      key: RouteApp.route.key,
+      routes: {
+        '/':(context)=>MyHome(),
+        'customer':(context)=>Customer(),
+        'mershant':(context)=>Mershant(),
+      },
+      onGenerateRoute: (RouteSettings setting){
+       String name= setting.name;
+       var arguments= setting.arguments;
+       MaterialPageRoute route;
+       if(name=='home'){
+         route= MaterialPageRoute(
+             builder: (context) => Home(arguments));
+       }
+       return route;
+      },
+      onUnknownRoute: (setting){
+        return MaterialPageRoute(
+            builder: (context) => Scaffold(
+              body: Center(child: Text("404 not found"),),
+            ));
+      },
     );
   }
 }
