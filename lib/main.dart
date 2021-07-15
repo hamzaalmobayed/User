@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      key: RouteApp.route.key,
+      navigatorKey:  RouteApp.route.key,
       routes: {
         '/':(context)=>MyHome(),
         'customer':(context)=>Customer(),
