@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/FormUser.dart';
 import 'package:untitled/Route.dart';
 import 'package:untitled/customer.dart';
+import 'package:untitled/sharedPreferance.dart';
 import 'package:untitled/textField.dart';
 
 import 'Home.dart';
 import 'Mershant.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpHelper.spHelper.initSharedPreferences();
   runApp(MyApp());
 }
 
@@ -14,13 +18,18 @@ enum Type { Customer, Mershant }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  Widget myHome(){
+    FormUser usergetting=SpHelper.spHelper.getUser();
+    return (usergetting!=null)?Home(usergetting):MyHome();
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Flutter Demo',
       navigatorKey:  RouteApp.route.key,
       routes: {
-        '/':(context)=>MyHome(),
+        '/':(context)=>myHome(),
         'customer':(context)=>Customer(),
         'mershant':(context)=>Mershant(),
       },

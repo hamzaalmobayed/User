@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/sharedPreferance.dart';
 import 'package:untitled/textField.dart';
 
 import 'FormUser.dart';
@@ -105,6 +106,7 @@ class _MershantState extends State<Mershant> {
                 if (email != null && password != null && confirm != null&&shop!=null&&company!=null) {
                     FormUser mershantUser = FormUser.mershant(
                         email, password, confirm, company, shop, init);
+                    SpHelper.spHelper.setUser(mershantUser);
                     var result=RouteApp.route.pushNamedFuction('home', mershantUser);
                   //var result=  await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: mershantUser);
                   print(result);

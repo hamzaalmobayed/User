@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/FormUser.dart';
 import 'package:untitled/main.dart';
+import 'package:untitled/sharedPreferance.dart';
 
 class Home extends StatefulWidget {
   FormUser formUser;
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop("done Hamza!!");
+                   SpHelper.spHelper.sharedPreferences.remove("user");
 
                   },
                   child: Padding(
