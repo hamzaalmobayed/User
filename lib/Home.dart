@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
 
                    SpHelper.spHelper.sharedPreferences.remove("user");
-                   Navigator.of(context).pushReplacementNamed('/');
+                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (con)=>MyHome()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
