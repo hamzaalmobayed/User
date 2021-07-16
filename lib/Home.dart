@@ -54,9 +54,9 @@ class _HomeState extends State<Home> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop("done Hamza!!");
-                   SpHelper.spHelper.sharedPreferences.remove("user");
 
+                   SpHelper.spHelper.sharedPreferences.remove("user");
+                   Navigator.of(context).pushReplacementNamed('/');
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),

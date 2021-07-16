@@ -39,6 +39,7 @@ class FormUser{
           "password":this.password,
           "confirm":this.confirm,
           "shop":this.shop,
+          "goods":this.goods,
           "company":this.company,
         }
   };
