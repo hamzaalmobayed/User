@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:untitled/FormUser.dart';
 import 'package:untitled/Home.dart';
 import 'package:untitled/Route.dart';
+import 'package:untitled/file.dart';
 import 'package:untitled/sharedPreferance.dart';
 import 'package:untitled/textField.dart';
+import 'package:untitled/launch.dart';
 class Customer extends StatefulWidget {
   @override
   _CustomerState createState() => _CustomerState();
@@ -42,9 +45,12 @@ class _CustomerState extends State<Customer> {
                   if(email!=null&&password!=null&&confirm!=null){
                     FormUser customerUser=FormUser.customer(email,password,confirm);
                     SpHelper.spHelper.setUser(customerUser);
-                    var result=await RouteApp.route.pushNamedFuction('home',customerUser);
-                   //var result= await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: customerUser);
+                    FileHelper.fileHelper.write("customer", jsonEncode(customerUser.toMap()));
+                    var result=await RouteApp.route.pushFuction(Home(customerUser));
+                    print(await FileHelper.fileHelper.read("customer"));
+                    //var result= await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: customerUser);
                    print(result);
+                   UrlLauncher.urlLuncher.openGooglePlay();
                   }
 
                 },
@@ -63,3 +69,4 @@ class _CustomerState extends State<Customer> {
     );
   }
 }
+

@@ -3,6 +3,8 @@ import 'package:untitled/FormUser.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/sharedPreferance.dart';
 
+import 'Route.dart';
+
 class Home extends StatefulWidget {
   FormUser formUser;
 
@@ -53,10 +55,12 @@ class _HomeState extends State<Home> {
                   color: Colors.blueAccent,
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
 
                    SpHelper.spHelper.sharedPreferences.remove("user");
-                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (con)=>MyHome()));
+                   Navigator.of(context).pop();
+
+
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),

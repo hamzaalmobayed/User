@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:untitled/launch.dart';
 import 'package:untitled/sharedPreferance.dart';
 import 'package:untitled/textField.dart';
 
 import 'FormUser.dart';
 import 'Home.dart';
 import 'Route.dart';
+import 'file.dart';
 
 class Mershant extends StatefulWidget {
   @override
@@ -107,9 +111,12 @@ class _MershantState extends State<Mershant> {
                     FormUser mershantUser = FormUser.mershant(
                         email, password, confirm, company, shop, init);
                     SpHelper.spHelper.setUser(mershantUser);
-                    var result=RouteApp.route.pushNamedFuction('home', mershantUser);
+                    FileHelper.fileHelper.write("mershant", jsonEncode(mershantUser.toMap()));
+                    var result=RouteApp.route.pushFuction(Home(mershantUser));
+                    print(await FileHelper.fileHelper.read("mershant"));
                   //var result=  await Navigator.of(context).pushNamedAndRemoveUntil('home',ModalRoute.withName('name'),arguments: mershantUser);
                   print(result);
+                  UrlLauncher.urlLuncher.openTelegram();
                 }
                 },
                 child: Padding(
